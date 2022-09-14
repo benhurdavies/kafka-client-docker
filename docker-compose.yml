@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  kafka-client:
+    build:
+      context: .
+    volumes:
+      - ./users_jaas.conf:/app/kafka_2.13-3.2.1/users_jaas.conf
+      - ./client_sasl.properties:/app/kafka_2.13-3.2.1/client_sasl.properties
+    environment:
+      - KAFKA_OPTS=-Djava.security.auth.login.config=/app/kafka_2.13-3.2.1/users_jaas.conf
